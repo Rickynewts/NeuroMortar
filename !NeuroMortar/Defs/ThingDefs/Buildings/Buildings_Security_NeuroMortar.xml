@@ -215,7 +215,7 @@
     <forcedMissRadius>3</forcedMissRadius> <!-- 强制散布半径 3 格 -->
     <requireLineOfSight>false</requireLineOfSight>
     <minRange>5</minRange><!-- 最小射程 5 格 -->
-    <range>199</range><!-- 最大射程 -->
+    <range>180</range><!-- 最大射程 -->
     <burstShotCount>1</burstShotCount><!-- 每轮打 1 发 -->
     <soundCast>Mortar_LaunchA</soundCast> <!-- 开火音效 -->
     <muzzleFlashScale>16</muzzleFlashScale><!-- 枪口闪光大小 -->
