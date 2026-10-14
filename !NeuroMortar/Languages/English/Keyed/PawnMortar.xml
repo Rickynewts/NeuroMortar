@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <PawnMortar.Ready>Live fire control system ready</PawnMortar.Ready>
+  <PawnMortar.NoOperator>Missing live fire control system</PawnMortar.NoOperator>
+  <PawnMortar.NoPower>No power</PawnMortar.NoPower>
+  <PawnMortar.SealInside>Enter {0}</PawnMortar.SealInside>
+  <NeedsShells>Missing shells</NeedsShells>
+  <PawnMortar.AutoTracking>Auto-tracking mode</PawnMortar.AutoTracking>
+  <PawnMortar.AutoTracking.Desc>When enabled, the mortar will automatically search for hostile targets within range and open fire.</PawnMortar.AutoTracking.Desc>
+
+  <PawnMortar.ImproveAccuracy>Improve Accuracy</PawnMortar.ImproveAccuracy>
+  <PawnMortar.ImproveAccuracy.Desc>At the cost of triple power consumption, improves shooting accuracy and shortens firing cooldown.</PawnMortar.ImproveAccuracy.Desc>
+
+  <PawnMortar.Status.AutoTracking>Auto-tracking: On</PawnMortar.Status.AutoTracking>
+  <PawnMortar.Status.ImproveAccuracy>Improve Accuracy: On</PawnMortar.Status.ImproveAccuracy>
+</LanguageData>
