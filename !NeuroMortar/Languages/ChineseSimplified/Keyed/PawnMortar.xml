@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <PawnMortar.Ready>活体火控系统就位</PawnMortar.Ready>
+  <PawnMortar.NoOperator>缺少活体火控系统</PawnMortar.NoOperator>
+  <PawnMortar.NoPower>未通电</PawnMortar.NoPower>
+  <PawnMortar.SealInside>进入{0}</PawnMortar.SealInside>
+  <NeedsShells>缺少弹药</NeedsShells>
+  <PawnMortar.AutoTracking>自动索敌模式</PawnMortar.AutoTracking>
+  <PawnMortar.AutoTracking.Desc>开启后，迫击炮会自动搜索射程内的敌对目标并开火。</PawnMortar.AutoTracking.Desc>
+
+  <PawnMortar.ImproveAccuracy>精度提升</PawnMortar.ImproveAccuracy>
+  <PawnMortar.ImproveAccuracy.Desc>以三倍电力消耗为代价，提升射击精度并缩短开火冷却时间。</PawnMortar.ImproveAccuracy.Desc>
+
+  <PawnMortar.Status.AutoTracking>自动索敌：开启</PawnMortar.Status.AutoTracking>
+  <PawnMortar.Status.ImproveAccuracy>精度提升：开启</PawnMortar.Status.ImproveAccuracy>
+</LanguageData>

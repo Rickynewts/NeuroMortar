@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<packageId>Yushiren.NeuroMortar</packageId>
+	<name>NeuroMortar</name>
+	<author>Yushiren</author>
+	<supportedVersions>
+	 <li>1.6</li>
+	</supportedVersions>
+	<description>Test mod.
+	</description>
+</ModMetaData>

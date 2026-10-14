@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>NeuroMortar</defName>
+    <label>神经破击炮</label>
+    <description>一门由神经链接驱动的自动迫击炮。</description>
+
+    <!-- 自定义C# 类-->
+    <thingClass>PawnMortar.Building_PawnMortar</thingClass>
+
+    <!--底层贴图-->
+    <graphicData>
+      <texPath>Things/NeuroMortar_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <!-- 贴图绘制尺寸-->
+      <drawSize>(2.5,2.5)</drawSize>
+      <!-- 命中判定矩形-->
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <!-- 阴影：体积和偏移-->
+      <shadowData>
+        <volume>(1.5,0.35,1.4)</volume>
+        <offset>(0,0,-0.05)</offset>
+      </shadowData>
+    </graphicData>
+
+    <!--图标-->
+    <uiIconPath>Things/NeuroMortar_Icon</uiIconPath>
+    <uiIconScale>1.25</uiIconScale>
+
+    <altitudeLayer>Building</altitudeLayer>
+
+    <!-- 必须 RealtimeOnly：
+         Building_TurretGun 每帧通过 TurretTop 绘制旋转炮管，
+         MapMeshAndRealTime 会把这部分交给 section layer 缓存，导致炮管不旋转。 -->
+    <drawerType>RealtimeOnly</drawerType>
+    
+    <!-- 不可旋转-->
+    <rotatable>false</rotatable>
+
+    <!-- 占地 -->
+    <size>(2,2)</size>
+
+    <!-- 交互格 -->
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+
+    <!-- 阻挡通行 -->
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.5</fillPercent>
+
+    <!-- 鼠标悬停时显示 tooltip -->
+    <hasTooltip>true</hasTooltip>
+
+    <!--基础属性-->
+    <statBases>
+      <MaxHitPoints>450</MaxHitPoints>
+      <Flammability>0.4</Flammability>
+      <WorkToBuild>20000</WorkToBuild>
+      <Mass>100</Mass>
+      <Beauty>-20</Beauty>
+      <!--炮塔命中率-->
+      <ShootingAccuracyTurret>0.996</ShootingAccuracyTurret>
+    </statBases>
+
+    <!-- 普通 tick 频率（每帧），因为要驱动炮管旋转与开火状态机 -->
+    <tickerType>Normal</tickerType>
+
+    <!--组件-->
+    <comps>
+
+      <!-- 被摧毁时爆炸：半径 5.9，伤害类型 Bomb，50% 概率不爆 -->
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>5.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+
+      <!-- 耗电 -->
+     <li Class="CompProperties_Power">
+       <compClass>CompPowerTrader</compClass>
+       <basePowerConsumption>100</basePowerConsumption>
+     </li>
+
+      <!-- 可开关 -->
+      <li Class="CompProperties_Flickable"/>
+
+      <!-- 可故障 -->
+      <li Class="CompProperties_Breakdownable"/>
+
+      <!-- 燃料 = 炮弹：每次开火消耗 1 颗高爆弹，
+           与 C# 里 Verb 的 consumeFuelPerShot=1 配合。
+           可手动装填-->
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>Shells Remaining</fuelLabel>
+        <fuelGizmoLabel>Belt</fuelGizmoLabel>
+        <fuelFilter>
+          <thingDefs>
+            <li>Shell_HighExplosive</li>
+          </thingDefs>
+        </fuelFilter>
+        <fuelCapacity>15</fuelCapacity>
+        <initialFuelPercent>0</initialFuelPercent>
+        <autoRefuelPercent>1</autoRefuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <minimumFueledThreshold>1</minimumFueledThreshold>
+        <fuelMultiplier>1</fuelMultiplier>
+        <!-- 只在开火时消耗，而不是持续消耗 -->
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <outOfFuelMessage>Cannot shoot: Needs shells</outOfFuelMessage>
+      </li>
+    </comps>
+
+    <!-- 建造成本-->
+    <costList>
+      <Steel>250</Steel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+
+    <!-- 必须建在重型地形上-->
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <specialDisplayRadius>29.9</specialDisplayRadius>
+
+    <!-- 建造需要建造技能 8 级以上 -->
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+
+    <!-- 建造时的占位 worker-->
+    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+    </placeWorkers>
+
+    <!-- 研究前置：迫击炮 -->
+    <researchPrerequisites>
+      <li>Mortars</li>
+      <li>BrainWiring</li>
+    </researchPrerequisites>
+
+    <!-- building 段-->
+    <building>
+      <!-- 敌对 AI 会把它算作"危险目标"优先攻击 -->
+      <ai_combatDangerous>true</ai_combatDangerous>
+
+      <!-- 炮塔武器 def：提供开火逻辑和炮管贴图（TurretTop 从它的 graphicData 读）
+           本建筑靠它拿到 AttackVerb / verbProps / 炮管 texPath -->
+      <turretGunDef>Gun_NeuroMortarTurret</turretGunDef>
+
+      <!-- 每发炮弹之间的冷却（秒）。用于「CanFireIn: Xs」显示与内部 burstCooldownTicksLeft 倒计时 -->
+      <turretBurstCooldownTime>20</turretBurstCooldownTime>
+
+      <!-- 每次开火前的预热时长（秒，范围随机）。
+           1~1 表示固定 1 秒。只影响视觉/节奏，不影响精度 -->
+      <turretBurstWarmupTime>1~1</turretBurstWarmupTime>
+
+      <!-- 刚建好时的初始冷却（秒）。0 = 建好就能开火 -->
+      <turretInitialCooldownTime>0</turretInitialCooldownTime>
+
+      <!-- 炮管贴图的绘制尺寸（单位：格-->
+      <turretTopDrawSize>3</turretTopDrawSize>
+
+      <!-- 炮管贴图的绘制中心相对建筑中心的偏移（单位：格）。-->
+      <turretTopOffset>(0.4, -0.2)</turretTopOffset>
+
+      <!-- 关掉"目标锁定"音效 -->
+      <playTargetAcquiredSound>false</playTargetAcquiredSound>
+    </building>
+  </ThingDef>
+
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Gun_NeuroMortarTurret</defName>
+    <label>neuromortar</label>
+    <description>神经迫击炮的内置武器。</description>
+
+    <!-- 炮管贴图（会被 TurretTop 读取并旋转绘制） -->
+    <graphicData>
+      <texPath>Things/NeuroMortar_Top</texPath> <!-- 顶层炮管贴图 -->
+      <graphicClass>Graphic_Single</graphicClass><!-- 静态单帧图形 -->
+    </graphicData>
+
+    <soundInteract>Interact_Rifle</soundInteract><!-- 交互音（玩家右键小人装备它时用） -->
+    <destroyOnDrop>true</destroyOnDrop> <!-- 从容器里丢出来就销毁，不落地 -->
+    <tradeability>None</tradeability> <!-- 不能被交易 -->
+    <useHitPoints>false</useHitPoints><!-- 不显示耐久度 -->
+
+    <statBases>
+      <!-- 精度 -->
+      <AccuracyTouch>0.1</AccuracyTouch>
+      <AccuracyShort>0.1</AccuracyShort>
+      <AccuracyMedium>0.1</AccuracyMedium>
+      <AccuracyLong>0.996</AccuracyLong>
+
+      <RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>40</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+
+    <!-- AI 把它归类为"攻城武器" -->
+    <weaponTags Inherit="false">
+      <li>Artillery_BaseDestroyer</li>
+    </weaponTags>
+
+    <!-- 开火逻辑 自定义C#-->
+   <verbs>
+  <li>
+    <verbClass>PawnMortar.Verb_PawnMortarShoot</verbClass>
+    <forceNormalTimeSpeed>false</forceNormalTimeSpeed> <!-- warmup 期间允许加速 -->
+    <hasStandardCommand>true</hasStandardCommand><!-- 显示"攻击"按钮 -->
+    <defaultProjectile>Bullet_NeuroMortarTurret</defaultProjectile> <!-- 炮弹 def -->
+    <warmupTime>1.0</warmupTime><!-- 预热 1 秒 -->
+    <forcedMissRadius>3</forcedMissRadius> <!-- 强制散布半径 3 格 -->
+    <requireLineOfSight>false</requireLineOfSight>
+    <minRange>5</minRange><!-- 最小射程 5 格 -->
+    <range>500</range><!-- 最大射程 500 格 -->
+    <burstShotCount>1</burstShotCount><!-- 每轮打 1 发 -->
+    <soundCast>Mortar_LaunchA</soundCast> <!-- 开火音效 -->
+    <muzzleFlashScale>16</muzzleFlashScale><!-- 枪口闪光大小 -->
+    <targetParams>
+      <canTargetLocations>true</canTargetLocations><!-- ★ 允许点"地面" -->
+    </targetParams>
+    <consumeFuelPerShot>1</consumeFuelPerShot><!-- 每发消耗 1 燃料 -->
+    <isMortar>true</isMortar><!-- 迫击炮标记 -->
+  </li>
+</verbs>
+  </ThingDef>
+
+
+  <!--炮弹-->
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_NeuroMortarTurret</defName>
+    <label>high-explosive shell</label>
+
+    <!-- 用Projectile_Explosive 让弹体落地时触发爆炸 -->
+    <thingClass>Projectile_Explosive</thingClass>
+
+    <graphicData>
+      <texPath>Things/Projectile/ShellHighExplosive</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+
+    <projectile>
+      <!-- 越过屋顶/墙壁飞行（视觉上从上方划过） -->
+      <flyOverhead>true</flyOverhead>
+
+      <!-- 直接命中伤害 -->
+      <damageAmountBase>50</damageAmountBase>
+
+      <!-- 飞行速度 -->
+      <speed>88</speed>
+
+      <!-- 爆炸半径 -->
+      <explosionRadius>3.9</explosionRadius>
+
+      <!-- 爆炸伤害类型 -->
+      <damageDef>Bomb</damageDef>
+    </projectile>
+  </ThingDef>
+
+
+  <!--JobDef：进入迫击炮-->
+  <JobDef>
+    <defName>EnterPawnMortar</defName>
+    <driverClass>PawnMortar.JobDriver_EnterPawnMortar</driverClass>
+    <reportString>正在进入神经破击炮</reportString>
+  </JobDef>
+
+</Defs>
