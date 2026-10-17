@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <NeuroMortar.label>neural mortar</NeuroMortar.label>
+  <NeuroMortar.description>A neural-link-driven automatic mortar.</NeuroMortar.description>
+
+  <!-- comps 索引从 0 开始：
+       0 Explosive / 1 Power / 2 Flickable / 3 Breakdownable / 4 Refuelable -->
+  <NeuroMortar.comps.4.fuelGizmoLabel>HE shells</NeuroMortar.comps.4.fuelGizmoLabel>
+
+</LanguageData>

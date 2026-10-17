@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <NeuroMortar.label>神经迫击炮</NeuroMortar.label>
+  <NeuroMortar.description>一门由神经链接驱动的自动迫击炮。</NeuroMortar.description>
+  <NeuroMortar>
+    <comps>
+      <li Class="CompProperties_Refuelable">
+        <fuelLabel>剩余炮弹</fuelLabel>
+        <fuelGizmoLabel>高爆弹</fuelGizmoLabel>
+        <outOfFuelMessage>无法开火：缺少弹药</outOfFuelMessage>
+      </li>
+    </comps>
+  </NeuroMortar>
+</LanguageData>

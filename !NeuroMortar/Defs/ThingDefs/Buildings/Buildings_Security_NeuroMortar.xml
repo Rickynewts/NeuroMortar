@@ -2,7 +2,7 @@
 <Defs>
   <ThingDef ParentName="BuildingBase">
     <defName>NeuroMortar</defName>
-    <label>神经破击炮</label>
+    <label>神经迫击炮</label>
     <description>一门由神经链接驱动的自动迫击炮。</description>
 
     <!-- 自定义C# 类-->
@@ -90,12 +90,11 @@
       <!-- 可故障 -->
       <li Class="CompProperties_Breakdownable"/>
 
-      <!-- 燃料 = 炮弹：每次开火消耗 1 颗高爆弹，
-           与 C# 里 Verb 的 consumeFuelPerShot=1 配合。
-           可手动装填-->
+      <!-- 燃料 -->
       <li Class="CompProperties_Refuelable">
         <fuelLabel>Shells Remaining</fuelLabel>
-        <fuelGizmoLabel>Belt</fuelGizmoLabel>
+        <!-- 燃料名称 -->
+        <fuelGizmoLabel>高爆弹</fuelGizmoLabel>
         <fuelFilter>
           <thingDefs>
             <li>Shell_HighExplosive</li>
@@ -265,7 +264,7 @@
   <JobDef>
     <defName>EnterPawnMortar</defName>
     <driverClass>PawnMortar.JobDriver_EnterPawnMortar</driverClass>
-    <reportString>正在进入神经破击炮</reportString>
+    <reportString>正在进入神经迫击炮</reportString>
   </JobDef>
 
 </Defs>

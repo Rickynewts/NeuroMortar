@@ -4,6 +4,9 @@
   <PawnMortar.NoOperator>缺少活体火控系统</PawnMortar.NoOperator>
   <PawnMortar.NoPower>未通电</PawnMortar.NoPower>
   <PawnMortar.SealInside>进入{0}</PawnMortar.SealInside>
+  <PawnMortar.CarryToMortar>把 {0} 送入神经迫击炮</PawnMortar.CarryToMortar>
+  <PawnMortar.CannotCarry>无法搬运</PawnMortar.CannotCarry>
+  <PawnMortar.NoMortar>没有可用的神经迫击炮</PawnMortar.NoMortar>
   <NeedsShells>缺少弹药</NeedsShells>
   <PawnMortar.AutoTracking>自动索敌模式</PawnMortar.AutoTracking>
   <PawnMortar.AutoTracking.Desc>开启后，迫击炮会自动搜索射程内的敌对目标并开火。</PawnMortar.AutoTracking.Desc>

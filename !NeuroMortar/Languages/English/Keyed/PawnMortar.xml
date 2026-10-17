@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <PawnMortar.Ready>Live fire control system ready</PawnMortar.Ready>
-  <PawnMortar.NoOperator>Missing live fire control system</PawnMortar.NoOperator>
+  <PawnMortar.Ready>Living fire-control system online</PawnMortar.Ready>
+  <PawnMortar.NoOperator>Missing living fire-control system</PawnMortar.NoOperator>
   <PawnMortar.NoPower>No power</PawnMortar.NoPower>
-  <PawnMortar.SealInside>Enter {0}</PawnMortar.SealInside>
-  <NeedsShells>Missing shells</NeedsShells>
-  <PawnMortar.AutoTracking>Auto-tracking mode</PawnMortar.AutoTracking>
-  <PawnMortar.AutoTracking.Desc>When enabled, the mortar will automatically search for hostile targets within range and open fire.</PawnMortar.AutoTracking.Desc>
 
-  <PawnMortar.ImproveAccuracy>Improve Accuracy</PawnMortar.ImproveAccuracy>
-  <PawnMortar.ImproveAccuracy.Desc>At the cost of triple power consumption, improves shooting accuracy and shortens firing cooldown.</PawnMortar.ImproveAccuracy.Desc>
+  <PawnMortar.SealInside>Enter {0}</PawnMortar.SealInside>
+
+  <PawnMortar.CarryToMortar>Carry {0} into the neural mortar</PawnMortar.CarryToMortar>
+  <PawnMortar.CannotCarry>Cannot carry</PawnMortar.CannotCarry>
+  <PawnMortar.NoMortar>No available neural mortar</PawnMortar.NoMortar>
+
+  <NeedsShells>Missing shells</NeedsShells>
+
+  <PawnMortar.AutoTracking>Auto-tracking mode</PawnMortar.AutoTracking>
+  <PawnMortar.AutoTracking.Desc>When enabled, the mortar automatically searches for hostile targets within range and fires at them.</PawnMortar.AutoTracking.Desc>
+
+  <PawnMortar.ImproveAccuracy>Accuracy boost</PawnMortar.ImproveAccuracy>
+  <PawnMortar.ImproveAccuracy.Desc>Increases shot accuracy and shortens cooldown at the cost of triple power consumption.</PawnMortar.ImproveAccuracy.Desc>
 
   <PawnMortar.Status.AutoTracking>Auto-tracking: On</PawnMortar.Status.AutoTracking>
-  <PawnMortar.Status.ImproveAccuracy>Improve Accuracy: On</PawnMortar.Status.ImproveAccuracy>
+  <PawnMortar.Status.ImproveAccuracy>Accuracy boost: On</PawnMortar.Status.ImproveAccuracy>
+
+  <PawnMortar.fuelGizmoLabel>High-explosive shel</PawnMortar.fuelGizmoLabel>
 </LanguageData>

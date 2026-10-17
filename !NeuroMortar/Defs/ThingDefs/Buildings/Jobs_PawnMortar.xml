@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<!--JobDef：送入迫击炮-->
+  <JobDef>
+    <defName>CarryToPawnMortar</defName>
+    <driverClass>PawnMortar.JobDriver_CarryToPawnMortar</driverClass>
+    <reportString>将 TargetA 送入 TargetB 。</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+  </JobDef>
+
+</Defs>
